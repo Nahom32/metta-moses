@@ -40,11 +40,23 @@
     )
 )
 (= (reverse $list)
-    (reverse-helper $list ())
+     (reverse-helper $list ())
+    
 )
-;; !(addToDataSpace &dataspace)
-;; !(get-atoms &dataspace)
-;; !(get-data-with-probability (select 2 () (reverse (sort (to-list (collapse (superpose (get-data $space))))))))
+
+(= (select $size $list $accum)
+    (if (== $size 0)
+        $accum
+        (let ($head $tail) (decons $list)
+            (select (- $size 1) $tail (cons-atom $head $accum)) 
+        )
+    )
+)
+!(addToDataSpace &dataspace)
+!(get-atoms &dataspace)
+!(get-data &dataspace)
+!(get-data-with-probability (select 2 (reverse (sort (get-data &dataspace))) ()))
+
 ;!(select 2 () (reverse (sort (to-list (collapse (superpose (get-data ())))))))
 !(reverse (1 2 3 4 5 6 7))
-!(appendAtom 6 (1 2 3 4 5))
+;; !(appendAtom 6 (1 2 3 4 5))
