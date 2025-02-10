@@ -17,7 +17,7 @@
    )
 )
 
-;; total_fitness_weight
+;; calculates the total fitness weight of a function
 (=(total_fitness_weight $w)
   (foldl + 0 $w)
 )
