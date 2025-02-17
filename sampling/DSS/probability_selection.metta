@@ -1,6 +1,10 @@
 !(register-module! ../../../metta-moses)
 !(import! &self metta-moses:utilities:general-helpers)
 !(bind! &dataspace (new-space))
+(: data_point type)
+;;(data_point $index $diff $age $w $probability)
+
+(: data_point (->  $index $diff $age $w $probability data_point))
 
 (= (addToDataSpace $space)
     (add-reduct $space (superpose (
@@ -55,21 +59,23 @@
 )
 !(addToDataSpace &dataspace)
 !(get-atoms &dataspace)
+;; !(get-type (get-atoms &dataspace))
 !(get-data &dataspace)
-!(let* (
-    ($prob (get-data &dataspace))
-    ($length (len $prob))
-    ($sorted (sort $prob $length >=))
-    (() (println! (sorted $sorted)))
-   
-    ($selected (select 2 $sorted ()))
-    (() (println! (selected $selected)))
-)
-    (get-data-with-probability' &dataspace $selected)
 
-)
+;; !(let* (
+;;     ($prob (get-data &dataspace))
+;;     ($length (len $prob))
+;;     ($sorted (sort $prob $length >=))
+;;     (() (println! (sorted $sorted)))
+   
+;;     ($selected (select 2 $sorted ()))
+;;     (() (println! (selected $selected)))
+;; )
+;;     (get-data-with-probability' &dataspace $selected)
+
+;; )
 ;; !(get-data-with-probability (select 2 (reverse (sort (get-data &dataspace) )) ()))
 
 ;!(select 2 () (reverse (sort (to-list (collapse (superpose (get-data ())))))))
-!(reverse (1 2 3 4 5 6 7))
+;; !(reverse (1 2 3 4 5 6 7))
 ;; !(appendAtom 6 (1 2 3 4 5))
